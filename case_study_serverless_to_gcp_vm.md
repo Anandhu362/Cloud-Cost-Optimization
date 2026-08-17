@@ -27,6 +27,8 @@ The architecture was migrated to a dedicated Compute Engine VM instance in `me-c
 - ⚙️ **Caddy Reverse Proxy & Automatic SSL**: Caddy manages Port 443 HTTPS termination for the API endpoints with Let's Encrypt certificates, completely solving Vercel React frontend Mixed Content SSL constraints.
 - ⚙️ **Isolated Production Secrets**: High-security production credentials (`.env`, Firebase Admin SDK, BigQuery Service Account keys) are mounted read-only (`:ro`) into isolated Docker containers.
 
+![Production Dedicated VM Docker Container Status](assets/docker_ps.jpg)
+
 ---
 
 ## 3. Architecture & Technical Stack
@@ -58,7 +60,12 @@ graph TD
     G --> I[Zero Downtime Rollback Complete]
 ```
 
+### Deployment Health Check & Verification Output
+![Zero Downtime Healthcheck Log](assets/zero_downtime_healthcheck.jpg)
+
 ### Automated Rollback Shell Logic
+
+![Automated Rollback Script Logic](assets/rollback_script.jpg)
 
 ```bash
 # Evaluate target container health status after stabilization period

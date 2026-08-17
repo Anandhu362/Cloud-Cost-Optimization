@@ -29,6 +29,22 @@ This project covers a dual-phase architectural evolution across real-world produ
 
 ---
 
+## 🖼️ Verified Financial & Operational Evidence
+
+### 1. Stateless Cloud Run Migration (90.87% Cost Cut)
+| Baseline VM Monthly Cost (Jan 2026) | Cloud Run Monthly Forecast (Feb 2026) |
+| :---: | :---: |
+| ![January Baseline Bill](assets/january_baseline_bill.jpg) | ![February Cloud Run Bill](assets/february_bill.jpg) |
+
+---
+
+### 2. Dedicated VM Production Deployment & Zero Downtime Auto-Rollback
+| Production Container Health (`docker ps`) | Healthcheck Evaluation & Backup Purge Log |
+| :---: | :---: |
+| ![Docker PS Production VM](assets/docker_ps.jpg) | ![Zero Downtime Deployment Log](assets/zero_downtime_healthcheck.jpg) |
+
+---
+
 ## 📊 Core Architectural Decision Matrix
 
 | Dimension | Phase 1: Cloud Run Serverless | Phase 2: Dedicated VM + Caddy + Docker | Unoptimized VM (Baseline) |
@@ -51,6 +67,7 @@ To explore the detailed implementations, schemas, workflows, and evidence, navig
 ```
 .
 ├── README.md                           # Main repository overview & decision framework
+├── assets/                             # Visual proof image assets & screenshots
 └── docs/
     ├── ARCHITECTURE.md                 # Technical system diagrams & component breakdown
     ├── DEPLOYMENT_AND_CICD.md          # Step-by-step implementation guide & auto-rollback scripts
@@ -95,4 +112,3 @@ graph TD
 - **Portfolio**: [https://lnkd.in/g4b95Qja](https://lnkd.in/g4b95Qja)  
 - **GitHub**: [@Anandhu362](https://github.com/Anandhu362)  
 - **Focus Areas**: Cloud-native backend systems, cost-efficient cloud architectures, real-world production optimization.
-

@@ -32,15 +32,24 @@ The engineering team operated backends for two distinct business applications:
   - **Total Monthly Billing**: **$17.92 / month**
 - **Inefficiency**: The backend received light traffic, yet the VM was billed 24 hours a day, 7 days a week for idle CPU cycles.
 
+![Baseline VM Monthly Billing - Jan 2026](../assets/january_baseline_bill.jpg)
+
 ### Technical Migration Strategy
 - Containerized the Node.js + TypeScript codebase into a production Docker container.
 - Deployed to **Google Cloud Run** in `us-central1` with scaling configured from `Min: 0` to `Max: 20`.
+
+![Cloud Run CLI Deployment Log](../assets/cloud_run_cli.jpg)
+
 - Handled HTTPS, domain mapping, and container execution automatically via GCP managed infrastructure.
+
+![Cloud Run Service Observability Metrics](../assets/gcp_cloud_run_observability.jpg)
 
 ### Financial Proof & Results
 - **February 2026 Forecasted Total Cost**: **$1.40 / month**
 - **Net Savings**: **-90.87% cost reduction** (-$13.94 monthly drop).
 - Zero idle server billing; instances scale to zero during off-peak windows.
+
+![Cloud Run 90% Cost Cut Billing Proof - Feb 2026](../assets/february_bill.jpg)
 
 ```
 Monthly Cost Comparison (Stateless Microservice):
@@ -68,7 +77,13 @@ When scaling `ferrari-backend` on Cloud Run, three operational failures emerged:
 - Provisioned a dedicated `e2-medium` VM in `me-central1-a` (Ubuntu 22.04 LTS, 30GB `pd-balanced` SSD).
 - Deployed **Caddy Web Server** on Port 443 to manage reverse proxying and automatic Let's Encrypt TLS certificates, resolving browser Mixed Content constraints for frontends hosted on Vercel.
 - Mounted sensitive credentials (`.env`, Firebase Admin, BigQuery keys) read-only (`:ro`) into the Docker runtime container.
+
+![Production Dedicated VM Docker Container Status](../assets/docker_ps.jpg)
+
 - Built a zero-downtime automated deployment & rollback pipeline using GitHub Actions, Google Artifact Registry (GAR), native Docker `HEALTHCHECK`, and a 35-second stabilization evaluation period.
+
+![Zero Downtime Healthcheck Log](../assets/zero_downtime_healthcheck.jpg)
+![Automated Rollback Script Logic](../assets/rollback_script.jpg)
 
 ### Operational & Financial Results
 - **Cost Reduction**: Cut monthly cloud expenditure by **>50%** compared to unoptimized persistent serverless instances.
